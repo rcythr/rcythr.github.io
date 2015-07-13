@@ -56,6 +56,10 @@
   text-justify: inter-word;
 }
 
+.project-description {
+  min-height: 250px;
+}
+
 .bio {
   background-color: #EEEEEE;
   height: 300px;
