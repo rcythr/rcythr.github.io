@@ -14,6 +14,11 @@
   min-width: 100%;
 }
 
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .text-center {
   text-align: center;
 }
@@ -47,6 +52,8 @@
 .project {
   padding-top: 1.5rem;
   padding-bottom: 3rem;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .bio {
