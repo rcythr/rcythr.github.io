@@ -69,6 +69,14 @@
   min-height: 25rem;
 }
 
+.incomplete {
+    color: #B40000;
+}
+
+.complete {
+    color: #008400;
+    text-decoration: line-through;
+}
 
 .spacer {
   background-color: #000000;
