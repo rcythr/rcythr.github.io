@@ -60,13 +60,33 @@
 
                 <br/><br/>
 
-                Because Bifrost is currently in <code>Stage 1</code> the only rendering capability involves a single hit-test. If this test passes the pixel is colored the raw material color of the associated surface. The result isn't very realistic, but it's a good test of the ray intersection functions.
+                Because Bifrost is currently in <code>Stage 1</code> the only rendering capability involves a single hit-test. If this test passes the pixel is colored the raw material color of the associated surface. The result isn't very realistic, but it's a good test of the ray intersection functions. An example of the output is below.
+
+                <br/><br/>
+
+                Features which have been completed so far:
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="eight columns offset-by-two">
+                        <ul>
+                            <li>Configuration reading.</li>
+                            <li>Command line argument handling.</li>
+                            <li>Naive and bounding-volumne-hierarchy spatial indexing.</li>
+                            <li>Triangle &amp; sphere ray-intersection and sampling functions.</li>
+                            <li>View Plane and PPM output.</li>
+                            <li>Pinhole camera model</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <br/><br/><br/>
 
                 <div class="row">
-                    <div class="six columns offset-by-three">
-                        <img style="width: 100%; border: 1px solid #000000;" src="../images/checkpoint1.png" />
+                    <div class="eight columns offset-by-two text-center">
+                        <img style="width: 80%; border: 1px solid #CCCCCC;" src="../images/checkpoint1.png" />
+                        <p>A simple hit-test image. No shading is being performed yet.</p>
                     </div>
                 </div>
           </div>
@@ -93,12 +113,12 @@
                   <li>
                       <b>Stage 1</b> <code>Version 0.1.0</code>
                       <ul>
-                          <li style="color: #008400">Configuration reading.</li>
-                          <li style="color: #008400">Command line argument handling.</li>
-                          <li style="color: #008400">Naive and bounding-volumne-hierarchy spatial indexing.</li>
-                          <li style="color: #008400">Triangle &amp; sphere ray-intersection and sampling functions.</li>
-                          <li style="color: #008400">View Plane and PPM output.</li>
-                          <li style="color: #008400">Pinhole camera model</li>
+                          <li style="color: #008400;text-decoration: line-through;">Configuration reading.</li>
+                          <li style="color: #008400;text-decoration: line-through;">Command line argument handling.</li>
+                          <li style="color: #008400;text-decoration: line-through;">Naive and bounding-volumne-hierarchy spatial indexing.</li>
+                          <li style="color: #008400;text-decoration: line-through;">Triangle &amp; sphere ray-intersection and sampling functions.</li>
+                          <li style="color: #008400;text-decoration: line-through;">View Plane and PPM output.</li>
+                          <li style="color: #008400;text-decoration: line-through;">Pinhole camera model</li>
                       </ul>
                   </li>
                   <li>
