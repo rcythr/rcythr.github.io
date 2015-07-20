@@ -33,7 +33,6 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div style="background-color: #EEEEEE">
 <div class="container">
     <div class="row">
       <div class="tweleve columns">
@@ -47,7 +46,8 @@
       </div>
     </div>
 </div>
-</div>
+
+<div class="container"><hr/></div>
 
   <div class="container">
       <div class="project-heading row">
@@ -55,21 +55,25 @@
           <h6>Checkpoint 1</h6>
       </div>
       <div class="project row">
-          <div class="ten columns offset-by-two text-justify">
+          <div class="ten columns offset-by-one text-justify">
                 Bifrost has come quite a long way in the past 5 days! It now supports a custom json-like file format which makes configuration of scenes easy. See <a href="box.txt">this sample file</a> which creates the famous cornell-box with spheres.
 
                 <br/><br/>
 
                 Because Bifrost is currently in <code>Stage 1</code> the only rendering capability involves a single hit-test. If this test passes the pixel is colored the raw material color of the associated surface. The result isn't very realistic, but it's a good test of the ray intersection functions.
 
-                <br/><br/>
+                <br/><br/><br/>
 
-                <a href="../images/checkpoint1.png">Check out the first rendering.</a>
+                <div class="row">
+                    <div class="six columns offset-by-three">
+                        <img style="width: 100%; border: 1px solid #000000;" src="../images/checkpoint1.png" />
+                    </div>
+                </div>
           </div>
       </div>
   </div>
 
-  <hr/>
+<div class="container"><hr/></div>
 
   <div class="container">
       <div class="project-heading row">
@@ -77,7 +81,7 @@
           <h6>(Updated July 19th, 2015)</h6>
       </div>
       <div class="project row">
-          <div class="ten columns offset-by-two text-justify">
+          <div class="ten columns offset-by-one text-justify">
               <h5>Goals</h5>
               <ul>
                   <li>Support all functionality that is currently available with Blender's Cycles rendering engine.</li>
