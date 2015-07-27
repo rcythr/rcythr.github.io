@@ -73,6 +73,10 @@
     color: #B40000;
 }
 
+.deferred {
+    color: #C4C400;
+}
+
 .complete {
     color: #008400;
     text-decoration: line-through;
