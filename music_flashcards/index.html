@@ -1,0 +1,251 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sight-Reading Flash Cards</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/footer.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">Sight-Reading Flash Cards</div>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right navbar-btn">
+                        <li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#about_modal" >About</button></li>
+                        <li><button type="button" class="btn btn-link" id='controls_button' onclick="$('#setup_controls').slideToggle()"><span class="glyphicon glyphicon-cog"></span></button></li>
+                        <li><button type="button" class="btn btn-link" id='next_button' onclick="setup_new_challenge()"><span class="glyphicon glyphicon-forward"></span></button></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+    
+        <div class="container" style="margin-top: 65px">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div id='no_midi_support' class="alert alert-danger" role="alert" style="display: none;">
+                        <p>Failed to get MIDI access.</p><p>Either your browser does not support MIDI or your security settings do not allow it.</p><p>Try <a href="https://www.google.com/chrome/">Google Chrome</a>!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id='no_valid_notes' class="alert alert-danger" role="alert" style="display: none;">
+                    <p>No notes could be generated with the selected settings. Please choose more carefully.</p>
+                </div>
+            </div>
+            <div class="row" id="setup_controls">
+                <div class="col-md-12">
+                    <div class="well form-horizontal">
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <div class="col-md-6 ">
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_c" type="checkbox" checked/>C</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-4 checkbox">
+                                        <label><input id="note_cs" type="checkbox" checked/>C&#9839; / D&#9837;</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_d" type="checkbox" checked/>D</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-4 checkbox">
+                                        <label><input id="note_ds" type="checkbox" checked/>D&#9839; / E&#9837;</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_e" type="checkbox" checked/>E</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_f" type="checkbox" checked/>F</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-4 checkbox">
+                                        <label><input id="note_fs" type="checkbox" checked/>F&#9839; / G&#9837;</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_g" type="checkbox" checked/>G</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-4 checkbox">
+                                        <label><input id="note_gs" type="checkbox" checked/>G&#9839; / A&#9837;</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_a" type="checkbox" checked/>A</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-4 checkbox">
+                                        <label><input id="note_as" type="checkbox" checked/>A&#9839; / B&#9837;</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 col-sm-offset-3 checkbox">
+                                        <label><input id="note_b" type="checkbox" checked/>B</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Challenge Note Minimum</label>
+                                        <select class="form-control" id="min_note">
+                                            <option value="36" selected>C/2</option> <option value="37">C&#35;/2</option> <option value="38">D/2</option> <option value="39">D&#35;/2</option> <option value="40">E/2</option> <option value="41">F/2</option> <option value="42">F&#35;/2</option> <option value="43">G/2</option> <option value="44">G&#35;/2</option> <option value="45">A/2</option> <option value="46">A&#35;/2</option> <option value="47">B/2</option>
+                                            <option value="48">C/3</option> <option value="49">C&#35;/3</option> <option value="50">D/3</option> <option value="51">D&#35;/3</option> <option value="52">E/3</option> <option value="53">F/3</option> <option value="54">F&#35;/3</option> <option value="55">G/3</option> <option value="56">G&#35;/3</option> <option value="57">A/3</option> <option value="58">A&#35;/3</option> <option value="59">B/3</option>
+                                            <option value="60">C/4</option> <option value="61">C&#35;/4</option> <option value="62">D/4</option> <option value="63">D&#35;/4</option> <option value="64">E/4</option> <option value="65">F/4</option> <option value="66">F&#35;/4</option> <option value="67">G/4</option> <option value="68">G&#35;/4</option> <option value="69">A/4</option> <option value="70">A&#35;/4</option> <option value="71">B/4</option>
+                                            <option value="72">C/5</option> <option value="73">C&#35;/5</option> <option value="74">D/5</option> <option value="75">D&#35;/5</option> <option value="76">E/5</option> <option value="77">F/5</option> <option value="78">F&#35;/5</option> <option value="79">G/5</option> <option value="80">G&#35;/5</option> <option value="81">A/5</option> <option value="82">A&#35;/5</option> <option value="83">B/5</option>
+                                            <option value="84">C/6</option> <option value="85">C&#35;/6</option> <option value="86">D/6</option> <option value="87">D&#35;/6</option> <option value="88">E/6</option> <option value="89">F/6</option> <option value="90">F&#35;/6</option> <option value="91">G/6</option> <option value="92">G&#35;/6</option> <option value="93">A/6</option> <option value="94">A&#35;/6</option> <option value="95">B/6</option>
+                                            <option value="96">C/7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class='col-md-12'>
+                                        <label>Challenge Note Minimum</label>
+                                        <select class="form-control" id="max_note">
+                                            <option value="36">C/2</option> <option value="37">C&#35;/2</option> <option value="38">D/2</option> <option value="39">D&#35;/2</option> <option value="40">E/2</option> <option value="41">F/2</option> <option value="42">F&#35;/2</option> <option value="43">G/2</option> <option value="44">G&#35;/2</option> <option value="45">A/2</option> <option value="46">A&#35;/2</option> <option value="47">B/2</option>
+                                            <option value="48">C/3</option> <option value="49">C&#35;/3</option> <option value="50">D/3</option> <option value="51">D&#35;/3</option> <option value="52">E/3</option> <option value="53">F/3</option> <option value="54">F&#35;/3</option> <option value="55">G/3</option> <option value="56">G&#35;/3</option> <option value="57">A/3</option> <option value="58">A&#35;/3</option> <option value="59">B/3</option>
+                                            <option value="60">C/4</option> <option value="61">C&#35;/4</option> <option value="62">D/4</option> <option value="63">D&#35;/4</option> <option value="64">E/4</option> <option value="65">F/4</option> <option value="66">F&#35;/4</option> <option value="67">G/4</option> <option value="68">G&#35;/4</option> <option value="69">A/4</option> <option value="70">A&#35;/4</option> <option value="71">B/4</option>
+                                            <option value="72">C/5</option> <option value="73">C&#35;/5</option> <option value="74">D/5</option> <option value="75">D&#35;/5</option> <option value="76">E/5</option> <option value="77">F/5</option> <option value="78">F&#35;/5</option> <option value="79">G/5</option> <option value="80">G&#35;/5</option> <option value="81">A/5</option> <option value="82">A&#35;/5</option> <option value="83">B/5</option>
+                                            <option value="84">C/6</option> <option value="85">C&#35;/6</option> <option value="86">D/6</option> <option value="87">D&#35;/6</option> <option value="88">E/6</option> <option value="89">F/6</option> <option value="90">F&#35;/6</option> <option value="91">G/6</option> <option value="92">G&#35;/6</option> <option value="93">A/6</option> <option value="94">A&#35;/6</option> <option value="95">B/6</option>
+                                            <option value="96" selected>C/7</option> 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Note Delay (ms)</label>
+                                        <input id='note_delay' class='form-control' type='number' value='2000' pattern='[0-9]' />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-lg btn-primary" onclick="begin()">Begin!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display: none;" id="canvas" class="text-center"></div>
+        </div>
+        
+        <div id="about_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3>About</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">What is this?</h5>
+                                <p>This is a small webapp that generates a random challenge note which the user is then expected to play on their MIDI-enabled instrument.</p>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">Why does it exist?</h5>
+                                <p>For musical beginners the task of finding the right note to play when sight reading can be arduous. Playing music helps over time, but most songs do not span the whole range of an instrument.</p>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">Acknowledgements</h5>
+                                
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/rcythr">Richard Laughlin ( @rcythr ) </a>
+                                        <ul>
+                                            <li>Concept</li>
+                                            <li>Design and Development</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.vexflow.com/">VexFlow</a>
+                                        <ul>
+                                            <li>Javascript rendering library for music notation.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://getbootstrap.com/">Bootstrap</a>
+                                        <ul>
+                                            <li>CSS and JS library for designing beautiful web apps.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="https://bootswatch.com/">Bootswatch</a>
+                                        <ul>
+                                            <li>'Paper' theme for bootstrap.</li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="http://github.com/">Github</a>
+                                        <ul>
+                                            <li>Web hosting</li>
+                                            <li>Git hosting</li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li>
+                                        All others who contributed, even in a minor way, to the creation of this application. Thank you!
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="text-muted">Copyright &copy; 2017 Richard Laughlin<br/>All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
+        <script src="js/vexflow-min.js"></script>
+        <script src="js/flash_note.js"></script>
+    </body>
+</html>
