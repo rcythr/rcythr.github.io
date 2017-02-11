@@ -1,7 +1,7 @@
 
  $(document).ready(function() {
     try {
-        navigator.requestMIDIAccess({ sysex: true }).then( 
+        navigator.requestMIDIAccess().then( 
             function( midi ) {
                 setup_canvas(midi)
             }, 
